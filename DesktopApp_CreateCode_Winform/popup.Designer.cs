@@ -54,6 +54,7 @@
             this.btnXacNhan.TabIndex = 4;
             this.btnXacNhan.Text = "XÁC NHẬN";
             this.btnXacNhan.UseVisualStyleBackColor = true;
+            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // lblChonNhom
             // 
@@ -89,14 +90,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 672);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(937, 714);
             this.Controls.Add(this.lblQuyCach);
             this.Controls.Add(this.lblChonLoai);
             this.Controls.Add(this.lblChonNhom);
             this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.imagePopup);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "popup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "popup";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.popup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagePopup)).EndInit();
             this.ResumeLayout(false);

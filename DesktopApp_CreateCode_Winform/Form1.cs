@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using xNet;
+using Newtonsoft.Json;
+using System.Net;
+using System.Collections.Specialized;
+
 namespace DesktopApp_CreateCode_Winform
 {
     public partial class FrmIndex : Form
@@ -60,15 +64,68 @@ namespace DesktopApp_CreateCode_Winform
 
         private void button4_Click(object sender, EventArgs e)
         {
-            popup frmPopups = new popup(cblChonNhom.Text, cblChonLoai.Text, txtQuyCach.Text, saveImage.ImageLocation);
-            frmPopups.ShowDialog();
+            
+            Form formBackground = new Form();
+            try{
+                using (popup frmPopups = new popup(cblChonNhom.Text, cblChonLoai.Text, txtQuyCach.Text, saveImage.ImageLocation, true))
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .50d;
+                    formBackground.BackColor = Color.Black;
+                    formBackground.WindowState = FormWindowState.Maximized;
+                    formBackground.TopMost = true;
+                    formBackground.Location = this.Location;
+                    formBackground.ShowInTaskbar = false;
+
+                    formBackground.Show();
+                    frmPopups.ShowDialog();
+                    formBackground.Dispose();
+                }
+                
+            }
+            catch (Exception ex) {
+
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string url = "https://jsonplaceholder.typicode.com/todos/1?fbclid=IwAR0w8i4vr1Y7ayvSE0UvYIR52tuVNJloCHXy0H3zNTTYHXpmURbDy0d3aSU";
-            string html = GET(url);
-            httpGET.Text = html;
+            listView.Controls.Clear();
+             string url = "http://covtest.hmcdat.xyz/list";
+            string getUrl = GET(url);
+            string json = getUrl;
+            string[] arrStr = json.Split('}');
+            if (arrStr.Length >0)
+            {
+
+                for (int i = 0; i < arrStr.Length-1; i++)
+                {
+                    
+                    String jsonData = convertString(arrStr[i]);
+
+                    ItemCustomList.PanelCustom panel = new ItemCustomList.PanelCustom(jsonData);
+                    listView.Controls.Add(panel.create());
+                }
+                    
+            }
+           
+        }
+        private String convertString(String arrStr)
+        {
+            String str = "";
+            str = arrStr.Substring(1, arrStr.Length - 1) + "}";
+            return str;
+        }
+
+
+
+        public class ListJson
+        {
+            public string ID { set; get; }
+            public string Class { set; get; }
+            public string Type { set; get; }
+            public string Size { set; get; }
         }
 
         #region Methods
@@ -77,18 +134,14 @@ namespace DesktopApp_CreateCode_Winform
         {
             string result = "";
             result = httpRequest.Get(address).ToString();
-            return result;      
+            return result;
         }
         #endregion
+       
         private void button1_Click(object sender, EventArgs e)
         {
-            string address = "https://www.howkteam.vn/account/login?ReturnUrl=%2F";
-            string data = "";
-            string contentType = "";
 
-            string result = POST(address, data, contentType);
-
-            httpGET.Text = result; 
+          
         }
         #region Methods
         /// POST
@@ -104,5 +157,19 @@ namespace DesktopApp_CreateCode_Winform
         {
 
         }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+           
+
+        }
+       
+
     }
+       
 }
