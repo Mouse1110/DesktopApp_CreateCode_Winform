@@ -15,7 +15,7 @@ namespace DesktopApp_CreateCode_Winform
     public partial class popup : Form
     {
 
-        public popup(string valueChonNhom, string valueChonLoai, string valueQuyCach, string valueImage,bool check)
+        public popup(string valueChonNhom, string valueChonLoai, string valueQuyCach, string valueImage, bool check)
         {
             InitializeComponent();
             this.valueChonNhom = valueChonNhom;

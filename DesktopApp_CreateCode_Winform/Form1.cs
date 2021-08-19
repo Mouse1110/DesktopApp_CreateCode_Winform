@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Collections.Specialized;
 
+
 namespace DesktopApp_CreateCode_Winform
 {
     public partial class FrmIndex : Form
@@ -64,52 +65,62 @@ namespace DesktopApp_CreateCode_Winform
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
             Form formBackground = new Form();
-            try{
+            try
+            {
                 using (popup frmPopups = new popup(cblChonNhom.Text, cblChonLoai.Text, txtQuyCach.Text, saveImage.ImageLocation, true))
                 {
                     formBackground.StartPosition = FormStartPosition.Manual;
                     formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .50d;
+                    formBackground.Opacity = .70d;
                     formBackground.BackColor = Color.Black;
                     formBackground.WindowState = FormWindowState.Maximized;
-                    formBackground.TopMost = true;
-                    formBackground.Location = this.Location;
                     formBackground.ShowInTaskbar = false;
+                    //formBackground.Show();
 
-                    formBackground.Show();
-                    frmPopups.ShowDialog();
+                    frmPopups.Owner = formBackground;
+                    if (cblChonNhom.Text == "" || cblChonLoai.Text == ""|| imageLocation ==  "")
+                    {
+                        MessageBox.Show("Vui lòng điền đủ thông tin!!!");
+                    }
+                    else
+                    {
+                        frmPopups.ShowDialog();
+                    }
+                   
+
+                    // Location lỗi popup không quay lại trang index
                     formBackground.Dispose();
                 }
-                
-            }
-            catch (Exception ex) {
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             listView.Controls.Clear();
-             string url = "http://covtest.hmcdat.xyz/list";
+            string url = "http://covtest.hmcdat.xyz/list";
             string getUrl = GET(url);
             string json = getUrl;
             string[] arrStr = json.Split('}');
-            if (arrStr.Length >0)
+            if (arrStr.Length > 0)
             {
-
-                for (int i = 0; i < arrStr.Length-1; i++)
+                for (int i = 0; i < arrStr.Length - 1; i++)
                 {
-                    
-                    String jsonData = convertString(arrStr[i]);
 
+                    String jsonData = convertString(arrStr[i]);
                     ItemCustomList.PanelCustom panel = new ItemCustomList.PanelCustom(jsonData);
                     listView.Controls.Add(panel.create());
                 }
-                    
             }
-           
         }
         private String convertString(String arrStr)
         {
@@ -118,58 +129,27 @@ namespace DesktopApp_CreateCode_Winform
             return str;
         }
 
-
-
-        public class ListJson
-        {
-            public string ID { set; get; }
-            public string Class { set; get; }
-            public string Type { set; get; }
-            public string Size { set; get; }
-        }
-
         #region Methods
         /// Lấy mã HTML từ address truyền vào
         string GET(string address)
         {
             string result = "";
             result = httpRequest.Get(address).ToString();
-            return result;
+            return result;      
         }
         #endregion
-       
         private void button1_Click(object sender, EventArgs e)
         {
-
-          
         }
-        #region Methods
-        /// POST
-        string POST(string address, string data, string contentType)
-        {
-            string result = "";
-            result = httpRequest.Post(address, data, contentType).ToString();
-            return result;
-        }
-        #endregion
-
+        
         private void saveImage_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void panel5_Paint(object sender, PaintEventArgs e)
+        private void FrmIndex_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-           
-
-        }
-       
-
     }
-       
 }

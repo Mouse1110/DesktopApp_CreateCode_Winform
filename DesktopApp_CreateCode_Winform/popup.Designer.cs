@@ -44,6 +44,7 @@
             this.imagePopup.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imagePopup.TabIndex = 3;
             this.imagePopup.TabStop = false;
+            this.imagePopup.UseWaitCursor = true;
             this.imagePopup.Click += new System.EventHandler(this.imagePopup_Click);
             // 
             // btnXacNhan
@@ -54,6 +55,7 @@
             this.btnXacNhan.TabIndex = 4;
             this.btnXacNhan.Text = "XÁC NHẬN";
             this.btnXacNhan.UseVisualStyleBackColor = true;
+            this.btnXacNhan.UseWaitCursor = true;
             this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // lblChonNhom
@@ -65,6 +67,7 @@
             this.lblChonNhom.TabIndex = 5;
             this.lblChonNhom.Text = "Chọn Nhóm";
             this.lblChonNhom.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblChonNhom.UseWaitCursor = true;
             // 
             // lblChonLoai
             // 
@@ -75,6 +78,7 @@
             this.lblChonLoai.TabIndex = 6;
             this.lblChonLoai.Text = "Chọn Loại";
             this.lblChonLoai.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblChonLoai.UseWaitCursor = true;
             // 
             // lblQuyCach
             // 
@@ -85,23 +89,23 @@
             this.lblQuyCach.TabIndex = 7;
             this.lblQuyCach.Text = "Quy Cách";
             this.lblQuyCach.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblQuyCach.UseWaitCursor = true;
             // 
             // popup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(937, 714);
+            this.ClientSize = new System.Drawing.Size(911, 672);
             this.Controls.Add(this.lblQuyCach);
             this.Controls.Add(this.lblChonLoai);
             this.Controls.Add(this.lblChonNhom);
             this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.imagePopup);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "popup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "popup";
             this.TopMost = true;
+            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.popup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagePopup)).EndInit();
             this.ResumeLayout(false);

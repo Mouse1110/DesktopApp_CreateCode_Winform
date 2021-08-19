@@ -23,7 +23,7 @@ namespace ItemCustomList
             classCode = data[2].Split(',')[0].Substring(1, data[2].Split(',')[0].Length - 2);
             type = data[3].Split(',')[0].Substring(1, data[3].Split(',')[0].Length - 2);
 
-            size = data[4].Substring(1,data[4].Length-3);
+            size = data[4].Substring(1, data[4].Length - 3);
         }
     }
 
@@ -104,9 +104,9 @@ namespace ItemCustomList
         /// <param name="e"></param>
         private void Btn_Click(object sender, EventArgs e)
         {
-            popup frmPopups = new popup(data.classCode, data.type, data.size, null,false);
+            popup frmPopups = new popup(data.classCode, data.type, data.size, null, false);
             frmPopups.ShowDialog();
-            
+
         }
     }
 }
