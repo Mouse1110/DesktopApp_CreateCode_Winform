@@ -18,5 +18,6 @@ namespace DesktopApp_CreateCode_Winform
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmIndex());
         }
+
     }
 }

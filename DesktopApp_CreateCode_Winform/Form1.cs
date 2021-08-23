@@ -20,28 +20,42 @@ namespace DesktopApp_CreateCode_Winform
     {
         #region Properties
         HttpRequest httpRequest;
+        string url = "";
+        ItemCustomFile.AllFile itemCustomFile = new ItemCustomFile.AllFile();
         #endregion
         public FrmIndex()
         {
             InitializeComponent();
             httpRequest = new HttpRequest();
+            url = itemCustomFile.readFile();
+            loadList();
+            
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        
+
+        private void loadList()
         {
+            listView.Controls.Clear();
+            string link = url+"/list";
+            string getUrl = GET(link);
+            string json = getUrl;
+            string[] arrStr = json.Split('}');
 
+            if (arrStr.Length > 0)
+            {
+                for (int i = 0; i < arrStr.Length - 1; i++)
+                {
+
+                    String jsonData = convertString(arrStr[i]);
+                    ItemCustomList.PanelCustom panel = new ItemCustomList.PanelCustom(jsonData);
+                    listView.Controls.Add(panel.create());
+                }
+            }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
         String imageLocation = "";
+
         private void openFileDialog_Click(object sender, EventArgs e)
         {
            
@@ -87,10 +101,9 @@ namespace DesktopApp_CreateCode_Winform
                     {
                         frmPopups.ShowDialog();
                     }
-                   
-
                     // Location lỗi popup không quay lại trang index
-                    formBackground.Dispose();
+                    //formBackground.Dispose();
+                    //formBackground.Hide();
                 }
 
             }
@@ -106,21 +119,7 @@ namespace DesktopApp_CreateCode_Winform
 
         private void button2_Click(object sender, EventArgs e)
         {
-            listView.Controls.Clear();
-            string url = "http://covtest.hmcdat.xyz/list";
-            string getUrl = GET(url);
-            string json = getUrl;
-            string[] arrStr = json.Split('}');
-            if (arrStr.Length > 0)
-            {
-                for (int i = 0; i < arrStr.Length - 1; i++)
-                {
-
-                    String jsonData = convertString(arrStr[i]);
-                    ItemCustomList.PanelCustom panel = new ItemCustomList.PanelCustom(jsonData);
-                    listView.Controls.Add(panel.create());
-                }
-            }
+            loadList();
         }
         private String convertString(String arrStr)
         {
@@ -131,15 +130,33 @@ namespace DesktopApp_CreateCode_Winform
 
         #region Methods
         /// Lấy mã HTML từ address truyền vào
-        string GET(string address)
+        public string GET(string address)
         {
-            string result = "";
-            result = httpRequest.Get(address).ToString();
-            return result;      
+            
+            WebRequest request = WebRequest.Create(address);
+            request.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+            WebResponse response = request.GetResponse();
+            if (((HttpWebResponse)response).StatusDescription == "OK")
+            {
+                using (Stream data = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(data);
+                    string res = reader.ReadToEnd();
+                    return res;
+                }
+            } else
+            {
+                return "";
+            }
+           
+              
         }
         #endregion
         private void button1_Click(object sender, EventArgs e)
         {
+            frmSetting frmSetting = new frmSetting();
+            frmSetting.Show();
         }
         
         private void saveImage_Click(object sender, EventArgs e)
@@ -148,6 +165,16 @@ namespace DesktopApp_CreateCode_Winform
         }
 
         private void FrmIndex_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

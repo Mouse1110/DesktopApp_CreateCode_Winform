@@ -16,14 +16,17 @@ namespace ItemCustomList
         public String classCode;
         public String type;
         public String size;
+        public String image;
         public DataCode(String json)
         {
             String[] data = json.Split(':');
             id = data[1].Split(',')[0].Substring(1, data[1].Split(',')[0].Length - 2);
             classCode = data[2].Split(',')[0].Substring(1, data[2].Split(',')[0].Length - 2);
             type = data[3].Split(',')[0].Substring(1, data[3].Split(',')[0].Length - 2);
-
-            size = data[4].Substring(1, data[4].Length - 3);
+            size = data[4].Split(',')[0].Substring(1, data[4].Split(',')[0].Length - 2);
+           
+            ItemCustomFile.AllFile file = new ItemCustomFile.AllFile();
+            image =file.readFile()+data[5].Substring(1, data[5].Length - 3);
         }
     }
 
@@ -60,10 +63,10 @@ namespace ItemCustomList
             tb.BorderStyle = BorderStyle.FixedSingle;
             tb.Enabled = false;
             tb.ReadOnly = true;
-            tb.Font = new Font(tb.Font.Name, 12, FontStyle.Bold);
+            tb.Font = new Font(tb.Font.Name, 8, FontStyle.Bold);
             tb.ForeColor = Color.FromArgb(0, 0, 0);
             tb.Height = 2;
-            tb.Margin = new System.Windows.Forms.Padding(0, 0, 30, 0);
+            tb.Margin = new System.Windows.Forms.Padding(0, 5, 30, 0);
             tb.Width = width;
             tb.TextAlign = HorizontalAlignment.Center;
             tb.Text = text;
@@ -104,7 +107,7 @@ namespace ItemCustomList
         /// <param name="e"></param>
         private void Btn_Click(object sender, EventArgs e)
         {
-            popup frmPopups = new popup(data.classCode, data.type, data.size, null, false);
+            popup frmPopups = new popup(data.classCode, data.type, data.size, data.image, false);
             frmPopups.ShowDialog();
 
         }

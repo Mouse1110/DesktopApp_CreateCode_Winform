@@ -54,6 +54,8 @@ namespace DesktopApp_CreateCode_Winform
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.saveImage = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -64,6 +66,7 @@ namespace DesktopApp_CreateCode_Winform
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saveImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -83,7 +86,7 @@ namespace DesktopApp_CreateCode_Winform
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1905, 1250);
+            this.panel1.Size = new System.Drawing.Size(1890, 1250);
             this.panel1.TabIndex = 0;
             // 
             // listView
@@ -157,8 +160,9 @@ namespace DesktopApp_CreateCode_Winform
             this.panel3.Location = new System.Drawing.Point(384, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1521, 458);
+            this.panel3.Size = new System.Drawing.Size(1506, 458);
             this.panel3.TabIndex = 1;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panel4
             // 
@@ -320,13 +324,15 @@ namespace DesktopApp_CreateCode_Winform
             // 
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.saveImage);
+            this.flowLayoutPanel1.Controls.Add(this.panel5);
+            this.flowLayoutPanel1.Controls.Add(this.panel6);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 467);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(384, 783);
             this.flowLayoutPanel1.TabIndex = 4;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // button2
             // 
@@ -354,11 +360,27 @@ namespace DesktopApp_CreateCode_Winform
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel5
+            // 
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 197);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(203, 0);
+            this.panel5.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.saveImage);
+            this.panel6.Location = new System.Drawing.Point(3, 203);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(381, 577);
+            this.panel6.TabIndex = 3;
+            // 
             // saveImage
             // 
-            this.saveImage.Location = new System.Drawing.Point(3, 197);
+            this.saveImage.Location = new System.Drawing.Point(-3, 162);
             this.saveImage.Name = "saveImage";
-            this.saveImage.Size = new System.Drawing.Size(108, 86);
+            this.saveImage.Size = new System.Drawing.Size(381, 316);
             this.saveImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.saveImage.TabIndex = 2;
             this.saveImage.TabStop = false;
@@ -401,7 +423,7 @@ namespace DesktopApp_CreateCode_Winform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1905, 1250);
+            this.ClientSize = new System.Drawing.Size(1890, 1250);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -420,6 +442,7 @@ namespace DesktopApp_CreateCode_Winform
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.saveImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -455,6 +478,8 @@ namespace DesktopApp_CreateCode_Winform
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox saveImage;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }
 
