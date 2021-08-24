@@ -40,6 +40,7 @@ namespace DesktopApp_CreateCode_Winform
             this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtChonNhom = new System.Windows.Forms.TextBox();
             this.openFile = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.btnTaoMa = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@ namespace DesktopApp_CreateCode_Winform
             this.label5 = new System.Windows.Forms.Label();
             this.cblChonLoai = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cblChonNhom = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -148,9 +148,9 @@ namespace DesktopApp_CreateCode_Winform
             this.label7.Location = new System.Drawing.Point(482, 492);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 24);
+            this.label7.Size = new System.Drawing.Size(30, 24);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Stt";
+            this.label7.Text = "ID";
             // 
             // panel3
             // 
@@ -167,6 +167,7 @@ namespace DesktopApp_CreateCode_Winform
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.txtChonNhom);
             this.panel4.Controls.Add(this.openFile);
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.btnTaoMa);
@@ -174,13 +175,24 @@ namespace DesktopApp_CreateCode_Winform
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.cblChonLoai);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.cblChonNhom);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Location = new System.Drawing.Point(50, 117);
             this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1450, 306);
             this.panel4.TabIndex = 1;
+            // 
+            // txtChonNhom
+            // 
+            this.txtChonNhom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtChonNhom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtChonNhom.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtChonNhom.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtChonNhom.Location = new System.Drawing.Point(58, 77);
+            this.txtChonNhom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtChonNhom.Name = "txtChonNhom";
+            this.txtChonNhom.Size = new System.Drawing.Size(320, 39);
+            this.txtChonNhom.TabIndex = 9;
             // 
             // openFile
             // 
@@ -249,11 +261,9 @@ namespace DesktopApp_CreateCode_Winform
             this.cblChonLoai.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cblChonLoai.FormattingEnabled = true;
             this.cblChonLoai.Items.AddRange(new object[] {
-            "Loại Giỏi",
-            "Loại Khá",
-            "Loại Trung Bình",
-            "Loại Yếu"});
-            this.cblChonLoai.Location = new System.Drawing.Point(52, 217);
+            "BTP",
+            "CS"});
+            this.cblChonLoai.Location = new System.Drawing.Point(52, 221);
             this.cblChonLoai.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cblChonLoai.Name = "cblChonLoai";
             this.cblChonLoai.Size = new System.Drawing.Size(326, 39);
@@ -269,21 +279,6 @@ namespace DesktopApp_CreateCode_Winform
             this.label4.Size = new System.Drawing.Size(152, 33);
             this.label4.TabIndex = 2;
             this.label4.Text = "Chọn Loại";
-            // 
-            // cblChonNhom
-            // 
-            this.cblChonNhom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.cblChonNhom.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cblChonNhom.FormattingEnabled = true;
-            this.cblChonNhom.Items.AddRange(new object[] {
-            "Nhóm 1",
-            "Nhóm 2",
-            "Nhóm 3"});
-            this.cblChonNhom.Location = new System.Drawing.Point(52, 73);
-            this.cblChonNhom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cblChonNhom.Name = "cblChonNhom";
-            this.cblChonNhom.Size = new System.Drawing.Size(326, 39);
-            this.cblChonNhom.TabIndex = 1;
             // 
             // label3
             // 
@@ -463,7 +458,6 @@ namespace DesktopApp_CreateCode_Winform
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cblChonLoai;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cblChonNhom;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnTaoMa;
@@ -480,6 +474,7 @@ namespace DesktopApp_CreateCode_Winform
         private System.Windows.Forms.PictureBox saveImage;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TextBox txtChonNhom;
     }
 }
 

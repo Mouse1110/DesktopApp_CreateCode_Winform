@@ -65,12 +65,24 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdate.Designer.cs">
+      <DependentUpon>frmUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemList.cs" />
     <Compile Include="popup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="popup.Designer.cs">
       <DependentUpon>popup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupCheckID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupCheckID.Designer.cs">
+      <DependentUpon>PopupCheckID.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,8 +98,14 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdate.resx">
+      <DependentUpon>frmUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="popup.resx">
       <DependentUpon>popup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupCheckID.resx">
+      <DependentUpon>PopupCheckID.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -16,78 +16,36 @@ namespace DesktopApp_CreateCode_Winform
 {
     public partial class popup : Form
     {
-        public popup(string valueChonNhom, string valueChonLoai, string valueQuyCach, string valueImage, bool check)
+        public popup(string valueChonNhom, string valueChonLoai, string valueQuyCach, string valueImage,string id, bool check)
         {
             InitializeComponent();
             this.valueChonNhom = valueChonNhom;
             this.valueChonLoai = valueChonLoai;
             this.valueQuyCach = valueQuyCach;
             this.valueImageLocation = valueImage;
-            
+            this.valueID = id;
             if (!check)
             {
-                btnXacNhan.Visible = false;
+                btnXacNhan.Visible = true;
+                btnSua.Visible = false;
+                btnXoa.Visible = false;
             }
+            lblChonNhom.Text = valueChonNhom;
+            lblChonLoai.Text = valueChonLoai;
+            lblQuyCach.Text = valueQuyCach;
+            imagePopup.ImageLocation = !check?valueImageLocation: getFile.readFile() + valueImageLocation;
         }
     
         public string valueChonNhom { get; set; }
         public string valueChonLoai { get; set; }
         public string valueQuyCach { get; set; }
         public string valueImageLocation { get; set; }
-
-        private void popup_Load(object sender, EventArgs e)
-        {
-            lblChonNhom.Text = valueChonNhom;
-            lblChonLoai.Text = valueChonLoai;
-            lblQuyCach.Text = valueQuyCach;
-            imagePopup.ImageLocation = valueImageLocation;
-        }
-        
-
-        private void imagePopup_Click(object sender, EventArgs e)
-        {
-
-        }
-        
+        public string valueID { get; set; }
+ 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             postData(valueImageLocation, valueChonNhom, valueChonLoai, valueQuyCach);
-            this.Close();
-        }
-        //Cách 1
-        void postDataAsync(String classCode, String type, String size)
-        {
-            
-            using (var wb = new WebClient())
-            {
-                var data = new NameValueCollection();
-                data["class"] = classCode;
-                data["type"] = type;
-                data["size"] = size;
-
-                //wb.Headers.Add("iamge", System.IO.Path.GetFileName(image));
-                //wb.UploadFileAsync(uri, image);
-                
-                Upload(valueImageLocation);
-                //MessageBox.Show();
-                var response = wb.UploadValues("http://covtest.hmcdat.xyz/add", "POST", data);
-                string responseInString = Encoding.UTF8.GetString(response);
-                this.Hide();
-            }
-        }
-        private void Upload(string fileName)
-        {
-            var client = new WebClient();
-            var uri = new Uri("http://covtest.hmcdat.xyz/add");
-            try
-                {
-                    client.Headers.Add("fileName", System.IO.Path.GetFileName(fileName));
-                    client.UploadFileAsync(uri, fileName);
-                }
-            catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            this.Hide();
         }
 
         //Cách 2
@@ -115,13 +73,49 @@ namespace DesktopApp_CreateCode_Winform
                 { new StringContent(classCode), "class"},
                 { new StringContent(type), "type"},
                 { new StringContent(size), "size"},
-                { new FileContent(path), "img", Path.GetFileName(path)}
+                { new FileContent(path), "img", "data.img"}
             };
 
-            var html = UploadData(null, url , data);
-            MessageBox.Show(html);
+            var res = UploadData(null, url , data);
+            if (res != "false")
+            {
+                MessageBox.Show(res, "Mã vừa được khởi tạo là", MessageBoxButtons.OK);
+            } else
+            {
+                MessageBox.Show("Mã của bạn chưa được tạo", "Xin hãy kiểm tra lại quá trình",MessageBoxButtons.OK);
+            }
+            
+        }
+
+       
+        
+        private void deleteData(string id)
+        {
+            string url = getFile.readFile() + "/delete/" + id;
+            MultipartContent data = new MultipartContent() ;
+            var res = UploadData(null, url, data);
+            if (res == "true")
+            {
+                MessageBox.Show("Xóa mã thành công", "Thông báo");
+            }
+            else
+            {
+                MessageBox.Show("Mã của bạn chưa được xóa", "Thông báo");
+            }
         }
 
 
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            frmUpdate update = new frmUpdate(valueID,valueChonNhom,valueChonLoai,valueQuyCach,valueImageLocation);
+            update.Show();
+            this.Close();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            deleteData(valueID);
+            this.Close();
+        }
     }
 }

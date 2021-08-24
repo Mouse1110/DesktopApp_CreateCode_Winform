@@ -29,10 +29,9 @@ namespace DesktopApp_CreateCode_Winform
             httpRequest = new HttpRequest();
             url = itemCustomFile.readFile();
             loadList();
-            
         }
 
-        
+        private bool check { set; get; }
 
         private void loadList()
         {
@@ -55,34 +54,33 @@ namespace DesktopApp_CreateCode_Winform
         }
 
         String imageLocation = "";
-
+       
         private void openFileDialog_Click(object sender, EventArgs e)
         {
-           
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| ALL Files(*.*)|*.*";
-                if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     imageLocation = dialog.FileName;
                     saveImage.ImageLocation = imageLocation;
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
                 MessageBox.Show("Error");
             }
         }
-
-
+        
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form formBackground = new Form();
+            Form formBackground = new Form() ;
+
             try
             {
-                using (popup frmPopups = new popup(cblChonNhom.Text, cblChonLoai.Text, txtQuyCach.Text, saveImage.ImageLocation, true))
+                using (popup frmPopups = new popup(txtChonNhom.Text, cblChonLoai.Text, txtQuyCach.Text, saveImage.ImageLocation, null, false))
                 {
                     formBackground.StartPosition = FormStartPosition.Manual;
                     formBackground.FormBorderStyle = FormBorderStyle.None;
@@ -90,10 +88,10 @@ namespace DesktopApp_CreateCode_Winform
                     formBackground.BackColor = Color.Black;
                     formBackground.WindowState = FormWindowState.Maximized;
                     formBackground.ShowInTaskbar = false;
-                    //formBackground.Show();
+                    formBackground.Show();
 
                     frmPopups.Owner = formBackground;
-                    if (cblChonNhom.Text == "" || cblChonLoai.Text == ""|| imageLocation ==  "")
+                    if (txtChonNhom.Text == "" || cblChonLoai.Text == "" || imageLocation == "")
                     {
                         MessageBox.Show("Vui lòng điền đủ thông tin!!!");
                     }
@@ -113,8 +111,9 @@ namespace DesktopApp_CreateCode_Winform
             }
             finally
             {
-                formBackground.Dispose();
+                formBackground.Close();
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e)

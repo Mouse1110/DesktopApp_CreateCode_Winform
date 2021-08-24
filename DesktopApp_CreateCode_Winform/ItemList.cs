@@ -26,7 +26,7 @@ namespace ItemCustomList
             size = data[4].Split(',')[0].Substring(1, data[4].Split(',')[0].Length - 2);
            
             ItemCustomFile.AllFile file = new ItemCustomFile.AllFile();
-            image =file.readFile()+data[5].Substring(1, data[5].Length - 3);
+            image =data[5].Substring(1, data[5].Length - 3);
         }
     }
 
@@ -107,9 +107,35 @@ namespace ItemCustomList
         /// <param name="e"></param>
         private void Btn_Click(object sender, EventArgs e)
         {
-            popup frmPopups = new popup(data.classCode, data.type, data.size, data.image, false);
-            frmPopups.ShowDialog();
+            Form formBackground = new Form();
 
+            try
+            {
+                using (popup frmPopup = new popup(data.classCode, data.type, data.size, data.image, data.id, true))
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .70d;
+                    formBackground.BackColor = Color.Black;
+                    formBackground.WindowState = FormWindowState.Maximized;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    frmPopup.Owner = formBackground;
+                    frmPopup.ShowDialog();
+                   
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Close();
+            }
+           
         }
     }
 }

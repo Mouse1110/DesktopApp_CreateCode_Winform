@@ -16,7 +16,7 @@ namespace DesktopApp_CreateCode_Winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmIndex());
+            Application.Run(new frmLogin());
         }
 
     }

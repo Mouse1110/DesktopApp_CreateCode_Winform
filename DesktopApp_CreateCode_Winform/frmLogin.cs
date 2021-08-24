@@ -41,7 +41,7 @@ namespace DesktopApp_CreateCode_Winform
                 if (!File.Exists(path))
                 {
                     frmSetting frmSetting = new frmSetting();
-                    frmSetting.Show();
+                    frmSetting.ShowDialog();
                 }
                 else
                 {
@@ -90,14 +90,17 @@ namespace DesktopApp_CreateCode_Winform
             catch (Exception)
             {
                 frmSetting frmSetting = new frmSetting();
-                frmSetting.Show();
+                frmSetting.ShowDialog();
+                
             }
         }
         void moveToHomeForm()
         {
+            
             FrmIndex frmIndex = new FrmIndex();
-            frmIndex.Show();
             this.Hide();
+            frmIndex.ShowDialog();
+            this.Close();
         }
         private void btnWrite_Click(object sender, EventArgs e)
         {
