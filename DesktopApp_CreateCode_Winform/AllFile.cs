@@ -41,6 +41,21 @@ namespace ItemCustomFile
                 return "";
             }
         }
-        
+    }
+    class OptionOTD
+    {
+
+        public String code;
+        public String note;
+
+        public OptionOTD(string value)
+        {
+            //value : {"code":"A","note":"dasd dasds"}
+            //[{"code":"A","note":"Khung máy"},{"code":"B","note":"Bát kẹp"}]
+            string[] arrValue = value.Split(':');
+
+            code = arrValue[1].Split(',')[0].Substring(1, 1);
+            note = arrValue[2].Substring(1, arrValue[2].Length - 3);
+        }
     }
 }

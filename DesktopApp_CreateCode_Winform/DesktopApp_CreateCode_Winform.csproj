@@ -59,6 +59,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd.Designer.cs">
+      <DependentUpon>frmAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,18 +77,18 @@
     <Compile Include="frmUpdate.Designer.cs">
       <DependentUpon>frmUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUpdateTeamcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateTeamcs.Designer.cs">
+      <DependentUpon>frmUpdateTeamcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemList.cs" />
-    <Compile Include="popup.cs">
+    <Compile Include="frmPopup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="popup.Designer.cs">
-      <DependentUpon>popup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PopupCheckID.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PopupCheckID.Designer.cs">
-      <DependentUpon>PopupCheckID.cs</DependentUpon>
+    <Compile Include="frmPopup.Designer.cs">
+      <DependentUpon>frmPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,8 +98,23 @@
     <Compile Include="frmSetting.Designer.cs">
       <DependentUpon>frmSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScreenShot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScreenShot.Designer.cs">
+      <DependentUpon>ScreenShot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowImage.Designer.cs">
+      <DependentUpon>frmShowImage.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd.resx">
+      <DependentUpon>frmAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -101,11 +122,11 @@
     <EmbeddedResource Include="frmUpdate.resx">
       <DependentUpon>frmUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="popup.resx">
-      <DependentUpon>popup.cs</DependentUpon>
+    <EmbeddedResource Include="frmPopup.resx">
+      <DependentUpon>frmPopup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PopupCheckID.resx">
-      <DependentUpon>PopupCheckID.cs</DependentUpon>
+    <EmbeddedResource Include="frmUpdateTeamcs.resx">
+      <DependentUpon>frmUpdateTeamcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -119,6 +140,12 @@
     </Compile>
     <EmbeddedResource Include="frmSetting.resx">
       <DependentUpon>frmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScreenShot.resx">
+      <DependentUpon>ScreenShot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowImage.resx">
+      <DependentUpon>frmShowImage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

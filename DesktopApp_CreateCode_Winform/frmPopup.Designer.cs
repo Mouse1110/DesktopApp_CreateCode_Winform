@@ -1,6 +1,6 @@
 ﻿namespace DesktopApp_CreateCode_Winform
 {
-    partial class popup
+    partial class frmPopup
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnXacNhan = new System.Windows.Forms.Button();
             this.imagePopup = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblChonLoai = new System.Windows.Forms.Label();
@@ -43,21 +42,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imagePopup)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnXacNhan
-            // 
-            this.btnXacNhan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(39)))), ((int)(((byte)(80)))));
-            this.btnXacNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhan.ForeColor = System.Drawing.Color.White;
-            this.btnXacNhan.Location = new System.Drawing.Point(812, 580);
-            this.btnXacNhan.Name = "btnXacNhan";
-            this.btnXacNhan.Size = new System.Drawing.Size(270, 65);
-            this.btnXacNhan.TabIndex = 4;
-            this.btnXacNhan.Text = "XÁC NHẬN";
-            this.btnXacNhan.UseVisualStyleBackColor = false;
-            this.btnXacNhan.UseWaitCursor = true;
-            this.btnXacNhan.Visible = false;
-            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // imagePopup
             // 
@@ -84,7 +68,7 @@
             // 
             this.lblChonLoai.AutoSize = true;
             this.lblChonLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChonLoai.Location = new System.Drawing.Point(277, 162);
+            this.lblChonLoai.Location = new System.Drawing.Point(284, 162);
             this.lblChonLoai.Name = "lblChonLoai";
             this.lblChonLoai.Size = new System.Drawing.Size(164, 37);
             this.lblChonLoai.TabIndex = 6;
@@ -107,7 +91,7 @@
             // 
             this.lblChonNhom.AutoSize = true;
             this.lblChonNhom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChonNhom.Location = new System.Drawing.Point(277, 55);
+            this.lblChonNhom.Location = new System.Drawing.Point(284, 55);
             this.lblChonNhom.Name = "lblChonNhom";
             this.lblChonNhom.Size = new System.Drawing.Size(190, 37);
             this.lblChonNhom.TabIndex = 5;
@@ -119,7 +103,7 @@
             // 
             this.lblQuyCach.AutoSize = true;
             this.lblQuyCach.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuyCach.Location = new System.Drawing.Point(266, 269);
+            this.lblQuyCach.Location = new System.Drawing.Point(284, 275);
             this.lblQuyCach.Name = "lblQuyCach";
             this.lblQuyCach.Size = new System.Drawing.Size(159, 37);
             this.lblQuyCach.TabIndex = 7;
@@ -168,7 +152,7 @@
             this.btnSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(39)))), ((int)(((byte)(80)))));
             this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.ForeColor = System.Drawing.Color.White;
-            this.btnSua.Location = new System.Drawing.Point(222, 580);
+            this.btnSua.Location = new System.Drawing.Point(250, 580);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(270, 65);
             this.btnSua.TabIndex = 13;
@@ -182,7 +166,7 @@
             this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(39)))), ((int)(((byte)(80)))));
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.ForeColor = System.Drawing.Color.White;
-            this.btnXoa.Location = new System.Drawing.Point(525, 580);
+            this.btnXoa.Location = new System.Drawing.Point(570, 580);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(270, 65);
             this.btnXoa.TabIndex = 14;
@@ -191,7 +175,7 @@
             this.btnXoa.UseWaitCursor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // popup
+            // frmPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -200,9 +184,8 @@
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.imagePopup);
-            this.Name = "popup";
+            this.Name = "frmPopup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "popup";
             this.TopMost = true;
@@ -217,7 +200,6 @@
 
         #endregion
         private System.Windows.Forms.PictureBox imagePopup;
-        private System.Windows.Forms.Button btnXacNhan;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblChonLoai;
         private System.Windows.Forms.Label label3;

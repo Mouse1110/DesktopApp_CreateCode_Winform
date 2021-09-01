@@ -14,9 +14,9 @@ using xNet;
 
 namespace DesktopApp_CreateCode_Winform
 {
-    public partial class popup : Form
+    public partial class frmPopup : Form
     {
-        public popup(string valueChonNhom, string valueChonLoai, string valueQuyCach, string valueImage,string id, bool check)
+        public frmPopup(string valueChonNhom, string valueChonLoai, string valueQuyCach, string valueImage,string id, bool check)
         {
             InitializeComponent();
             this.valueChonNhom = valueChonNhom;
@@ -24,12 +24,7 @@ namespace DesktopApp_CreateCode_Winform
             this.valueQuyCach = valueQuyCach;
             this.valueImageLocation = valueImage;
             this.valueID = id;
-            if (!check)
-            {
-                btnXacNhan.Visible = true;
-                btnSua.Visible = false;
-                btnXoa.Visible = false;
-            }
+
             lblChonNhom.Text = valueChonNhom;
             lblChonLoai.Text = valueChonLoai;
             lblQuyCach.Text = valueQuyCach;
@@ -44,8 +39,8 @@ namespace DesktopApp_CreateCode_Winform
  
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
-            postData(valueImageLocation, valueChonNhom, valueChonLoai, valueQuyCach);
-            this.Hide();
+            //postData(valueImageLocation, valueChonNhom, valueChonLoai, valueQuyCach);
+            //this.Hide();
         }
 
         //Cách 2
@@ -65,30 +60,31 @@ namespace DesktopApp_CreateCode_Winform
             return html;
         }
 
+
+        //void postData(string path, string classCode, string type, string size)
+        //{
+        //    string url = getFile.readFile() + "/add";
+        //    MultipartContent data = new MultipartContent() {
+        //        { new StringContent(classCode), "class"},
+        //        { new StringContent(type), "type"},
+        //        { new StringContent(size), "size"},
+        //        { new FileContent(path), "img", "data.img"}
+        //    };
+
+        //    var res = UploadData(null, url, data);
+        //    if (res != "false")
+        //    {
+        //        MessageBox.Show(res, "Mã vừa được khởi tạo là", MessageBoxButtons.OK);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Mã của bạn chưa được tạo", "Xin hãy kiểm tra lại quá trình", MessageBoxButtons.OK);
+        //    }
+
+        //}
+
+
         ItemCustomFile.AllFile getFile = new ItemCustomFile.AllFile();
-        void postData(string path, string classCode, string type, string size)
-        {
-            string url = getFile.readFile() + "/add";
-            MultipartContent data = new MultipartContent() {
-                { new StringContent(classCode), "class"},
-                { new StringContent(type), "type"},
-                { new StringContent(size), "size"},
-                { new FileContent(path), "img", "data.img"}
-            };
-
-            var res = UploadData(null, url , data);
-            if (res != "false")
-            {
-                MessageBox.Show(res, "Mã vừa được khởi tạo là", MessageBoxButtons.OK);
-            } else
-            {
-                MessageBox.Show("Mã của bạn chưa được tạo", "Xin hãy kiểm tra lại quá trình",MessageBoxButtons.OK);
-            }
-            
-        }
-
-       
-        
         private void deleteData(string id)
         {
             string url = getFile.readFile() + "/delete/" + id;

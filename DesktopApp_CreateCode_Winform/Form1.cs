@@ -12,7 +12,7 @@ using xNet;
 using Newtonsoft.Json;
 using System.Net;
 using System.Collections.Specialized;
-
+using System.Text.RegularExpressions;
 
 namespace DesktopApp_CreateCode_Winform
 {
@@ -29,6 +29,8 @@ namespace DesktopApp_CreateCode_Winform
             httpRequest = new HttpRequest();
             url = itemCustomFile.readFile();
             loadList();
+            btnNhapUrl.Visible = false;
+            btnUpdateNhom.Visible = false;
         }
 
         private bool check { set; get; }
@@ -36,7 +38,7 @@ namespace DesktopApp_CreateCode_Winform
         private void loadList()
         {
             listView.Controls.Clear();
-            string link = url+"/list";
+            string link = url + "/list";
             string getUrl = GET(link);
             string json = getUrl;
             string[] arrStr = json.Split('}');
@@ -48,72 +50,10 @@ namespace DesktopApp_CreateCode_Winform
 
                     String jsonData = convertString(arrStr[i]);
                     ItemCustomList.PanelCustom panel = new ItemCustomList.PanelCustom(jsonData);
+                    ItemCustomList.DataCode dataCode = new ItemCustomList.DataCode(jsonData);
                     listView.Controls.Add(panel.create());
                 }
             }
-        }
-
-        String imageLocation = "";
-       
-        private void openFileDialog_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| ALL Files(*.*)|*.*";
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    imageLocation = dialog.FileName;
-                    saveImage.ImageLocation = imageLocation;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error");
-            }
-        }
-        
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Form formBackground = new Form() ;
-
-            try
-            {
-                using (popup frmPopups = new popup(txtChonNhom.Text, cblChonLoai.Text, txtQuyCach.Text, saveImage.ImageLocation, null, false))
-                {
-                    formBackground.StartPosition = FormStartPosition.Manual;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .70d;
-                    formBackground.BackColor = Color.Black;
-                    formBackground.WindowState = FormWindowState.Maximized;
-                    formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
-
-                    frmPopups.Owner = formBackground;
-                    if (txtChonNhom.Text == "" || cblChonLoai.Text == "" || imageLocation == "")
-                    {
-                        MessageBox.Show("Vui lòng điền đủ thông tin!!!");
-                    }
-                    else
-                    {
-                        frmPopups.ShowDialog();
-                    }
-                    // Location lỗi popup không quay lại trang index
-                    //formBackground.Dispose();
-                    //formBackground.Hide();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                formBackground.Close();
-            }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -131,41 +71,41 @@ namespace DesktopApp_CreateCode_Winform
         /// Lấy mã HTML từ address truyền vào
         public string GET(string address)
         {
-            
+
+
             WebRequest request = WebRequest.Create(address);
             request.Credentials = CredentialCache.DefaultNetworkCredentials;
+            try
+            {
+                WebResponse response = request.GetResponse();
 
-            WebResponse response = request.GetResponse();
-            if (((HttpWebResponse)response).StatusDescription == "OK")
-            {
-                using (Stream data = response.GetResponseStream())
+                if (((HttpWebResponse)response).StatusDescription == "OK")
                 {
-                    StreamReader reader = new StreamReader(data);
-                    string res = reader.ReadToEnd();
-                    return res;
+                    using (Stream data = response.GetResponseStream())
+                    {
+                        StreamReader reader = new StreamReader(data);
+                        string res = reader.ReadToEnd();
+                        return res;
+                    }
                 }
-            } else
+                else
+                {
+                    return "";
+                }
+            } catch (Exception)
             {
+                MessageBox.Show("Kiểm tra lại");
                 return "";
             }
-           
-              
+
+
+
         }
         #endregion
         private void button1_Click(object sender, EventArgs e)
         {
-            frmSetting frmSetting = new frmSetting();
-            frmSetting.Show();
-        }
-        
-        private void saveImage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FrmIndex_Load(object sender, EventArgs e)
-        {
-
+            btnNhapUrl.Visible = true;
+            btnUpdateNhom.Visible = true;
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -173,8 +113,87 @@ namespace DesktopApp_CreateCode_Winform
 
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void btnTaoMoi_Click(object sender, EventArgs e)
         {
+            frmAdd frmAdd = new frmAdd(false);
+            frmAdd.ShowDialog();
+        }
+
+
+        private void btnNhapUrl_Click(object sender, EventArgs e)
+        {
+            frmSetting frmSetting = new frmSetting();
+            btnNhapUrl.Visible = false;
+            btnUpdateNhom.Visible = false;
+            frmSetting.Show();
+        }
+
+        private void btnUpdateNhom_Click(object sender, EventArgs e)
+        {
+            frmUpdateTeamcs frmUpdateTeamcs = new frmUpdateTeamcs();
+            btnNhapUrl.Visible = false;
+            btnUpdateNhom.Visible = false;
+            frmUpdateTeamcs.Show();
+        }
+
+        public bool checkDigit(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (char.IsDigit(s[i]) == true)
+                    return true;
+            }
+            return false;
+        }
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            listView.Controls.Clear();
+            string link = url + "/list";
+            string getUrl = GET(link);
+            string json = getUrl;
+            string[] arrStr = json.Split('}');
+
+
+            for (int i = 0; i < arrStr.Length - 1; i++)
+            {
+
+                String jsonData = convertString(arrStr[i]);
+
+                ItemCustomList.PanelCustom panel = new ItemCustomList.PanelCustom(jsonData);
+                ItemCustomList.DataCode dataCode = new ItemCustomList.DataCode(jsonData);
+                
+                if(dataCode.id.Contains(txtSearch.Text) || dataCode.size.Contains(txtSearch.Text))
+                {
+                    listView.Controls.Add(panel.create());
+                   
+                }
+                //else if (txtSearch.Text == "")
+                //{
+                //    loadList();
+                //}
+
+                //if (jsonData.Contains(txtSearch.Text))
+                //{
+                //    listView.Controls.Add(panel.create());
+                //}
+                //else if(txtSearch.Text == "")
+                //{
+                //    loadList();
+                //}
+                //if (txtSearch.Text == dataCode.size)
+                //{
+                //    listView.Controls.Add(panel.create());
+
+                //}
+                //else if (txtSearch.Text == dataCode.classCode || txtSearch.Text == dataCode.id)
+                //{
+                //    listView.Controls.Add(panel.create());
+                //}
+                //else if (txtSearch.Text == "")
+                //{
+                //    loadList();
+                //}
+            }
 
         }
     }

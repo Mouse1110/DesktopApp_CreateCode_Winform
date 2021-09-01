@@ -35,7 +35,12 @@ namespace DesktopApp_CreateCode_Winform
         {
             
         }
-       
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmUpdateTeamcs frmUpdate = new frmUpdateTeamcs();
+            frmUpdate.Show();
+            this.Hide();
+        }
     }
 }

@@ -66,7 +66,7 @@ namespace ItemCustomList
             tb.Font = new Font(tb.Font.Name, 8, FontStyle.Bold);
             tb.ForeColor = Color.FromArgb(0, 0, 0);
             tb.Height = 2;
-            tb.Margin = new System.Windows.Forms.Padding(0, 5, 30, 0);
+            tb.Margin = new System.Windows.Forms.Padding(15, 5, 65, 0);
             tb.Width = width;
             tb.TextAlign = HorizontalAlignment.Center;
             tb.Text = text;
@@ -94,10 +94,11 @@ namespace ItemCustomList
 
         public Panel create()
         {
-            panel.Width = 720;
+            panel.Width = 900;
             panel.Height = 40;
             panel.BackColor = Color.FromArgb(255, 255, 255);
             panel.Padding = new System.Windows.Forms.Padding(5);
+            panel.Dock = DockStyle.Top;
             return panel;
         }
         /// <summary>
@@ -111,7 +112,7 @@ namespace ItemCustomList
 
             try
             {
-                using (popup frmPopup = new popup(data.classCode, data.type, data.size, data.image, data.id, true))
+                using (frmPopup frmPopup = new frmPopup(data.classCode, data.type, data.size, data.image, data.id, true))
                 {
                     formBackground.StartPosition = FormStartPosition.Manual;
                     formBackground.FormBorderStyle = FormBorderStyle.None;

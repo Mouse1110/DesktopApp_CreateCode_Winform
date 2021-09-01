@@ -128,11 +128,11 @@
             this.btnImageFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(39)))), ((int)(((byte)(80)))));
             this.btnImageFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImageFile.ForeColor = System.Drawing.Color.White;
-            this.btnImageFile.Location = new System.Drawing.Point(180, 610);
+            this.btnImageFile.Location = new System.Drawing.Point(186, 610);
             this.btnImageFile.Name = "btnImageFile";
             this.btnImageFile.Size = new System.Drawing.Size(252, 65);
             this.btnImageFile.TabIndex = 9;
-            this.btnImageFile.Text = "File";
+            this.btnImageFile.Text = "Hình ảnh";
             this.btnImageFile.UseVisualStyleBackColor = false;
             this.btnImageFile.Click += new System.EventHandler(this.btnImageFile_Click);
             // 
